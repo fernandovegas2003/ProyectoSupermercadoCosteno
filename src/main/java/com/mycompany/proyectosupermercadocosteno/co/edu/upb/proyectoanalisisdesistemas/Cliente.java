@@ -46,14 +46,16 @@ public class Cliente {
     public String getCorreoElectronico(){
     	return correoElectronico;
     }
-	 public boolean guardarDatosClienteEnArchivoTxt( String codigo,String cedula,String nombre,String contrasena,String telefono, String correoElectronico) {
+    
+    
+    
+    public boolean guardarDatosClienteEnArchivoTxt( String codigo,String cedula,String nombre,String contrasena,String telefono, String correoElectronico) {
 		File archivo;
 		FileWriter write;
 		BufferedWriter bw;
 		PrintWriter wr;
-		archivo= new File ("D:\\Documents\\ArchivosTxt\\Clientes.txt");
-		
-		
+		archivo= new File ("C:\\Users\\julic\\eclipse-workspace\\ProyectoAnalisisdeSistemas\\CLIENTES.txt");
+				
 		if( !archivo.exists()) {
 			try {
 				archivo.createNewFile();
@@ -71,12 +73,10 @@ public class Cliente {
 				wr.write("\n-----------------------------------------------------\n");
 				wr.close();
 				bw.close();
-			}
-			catch(IOException e) {
+			}catch(IOException e) {
 				System.out.println("Error");
 			}
-		}
-		else {
+		}else {
 			try {
 				archivo.createNewFile();
 				write = new FileWriter(archivo,true);
@@ -93,13 +93,17 @@ public class Cliente {
 				wr.write("\n-----------------------------------------------------\n");
 				wr.close();
 				bw.close();
-			}
-			catch(IOException e) {
+			}catch(IOException e) {
 				System.out.println("Error");
 			}
-		}
-		
-		return true;
-		
+		}return true;
+	}
+
+	public Carrito getCarrito() {
+		return null;
+	}
+	
+	public String toString() {
+	    return "Cliente= " + "Código: " + codigo + ", Nombre: " + nombre + ", Cédula: " + cedula +", Contraseña: "+ contrasena +", Correo Electronico: " + correoElectronico + ", Teléfono: " + telefono;
 	}
 }
