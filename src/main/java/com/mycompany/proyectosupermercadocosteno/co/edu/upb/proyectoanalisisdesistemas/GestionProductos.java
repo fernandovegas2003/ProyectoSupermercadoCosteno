@@ -19,8 +19,7 @@ public class GestionProductos {
 	                productos.remove(producto);
 	                return true;
 	            }
-	        }
-	        return false;
+	        }return false;
 	    }
 
 	    public Producto buscarProducto(String nombre) {
@@ -28,8 +27,7 @@ public class GestionProductos {
 	            if (producto.getNombre().equals(nombre)) {
 	                return producto;
 	            }
-	        }
-	        return null;
+	        } return null;
 	    }
 
 	    public ArrayList<Producto> getProductos() {
