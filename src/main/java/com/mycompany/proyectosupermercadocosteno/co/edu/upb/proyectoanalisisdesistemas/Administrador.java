@@ -4,6 +4,7 @@
  */
 package com.mycompany.proyectosupermercadocosteno.co.edu.upb.proyectoanalisisdesistemas;
 
+
 public class Administrador {
 	public static void mostrarPerfilAdministrador(Administrador administrador) {
 		String codigo= "292982";
@@ -15,6 +16,7 @@ public class Administrador {
 		String correoElectronico="julicostaking@gmail.com";
 		
 	   System.out.println("---------Perfil---------");
+           System.out.println("Juliana Chavez King lider y representante del supermercado COSTAKING");
  	   System.out.println("Código: "+ codigo);
  	   System.out.println("Usuario: "+ perfil);
  	   System.out.println("NIT: "+ cedula);
@@ -24,3 +26,4 @@ public class Administrador {
  	   System.out.println("Correo Electrónico: "+ correoElectronico);
     }
 }
+
