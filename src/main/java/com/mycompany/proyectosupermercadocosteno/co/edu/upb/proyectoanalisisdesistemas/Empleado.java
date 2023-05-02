@@ -9,17 +9,17 @@ import java.util.Date;
 public class Empleado {
 	private String nombre;
     private String direccion;
-    private String telefono;
+    private String telefono3;
     private String correoElectronico;
     private String cargo;
     private Date fechaContratacion;
     private String cedula;
-    private int codigo;
+    private String codigo;
 
-    public Empleado(String nombre, String direccion, String telefono, String correoElectronico, String cargo, String string, String cedula, int codigo) {
+    public Empleado(String nombre, String direccion, String telefono3, String correoElectronico, String cargo, Date fechaContratacion, String cedula, String codigo) {
         this.nombre = nombre;
         this.direccion = direccion;
-        this.telefono = telefono;
+        this.telefono3 = telefono3;
         this.correoElectronico = correoElectronico;
         this.cargo = cargo;
         this.fechaContratacion = fechaContratacion;
@@ -43,12 +43,12 @@ public class Empleado {
         this.direccion = direccion;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getTelefono3() {
+        return telefono3;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setTelefono3(String telefono3) {
+        this.telefono3 = telefono3;
     }
 
     public String getCorreoElectronico() {
@@ -83,69 +83,35 @@ public class Empleado {
 		this.cedula = cedula;
 	}
 
-	public int getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
-	 public boolean guardarDatosEmpleadoEnArchivoTxt( String nombre,String direccion,String correoElectronico,String cargo,Date fechaContratacion , String cedula, int codigo) {
-			File archivo;
-			FileWriter write;
-			BufferedWriter bw;
-			PrintWriter wr;
-			archivo= new File ("D:\\Documents\\ArchivosTxt\\Empleado.txt");
-			
-			
-			if( !archivo.exists()) {
-				try {
-					archivo.createNewFile();
-					write = new FileWriter(archivo,true);
-					bw =new BufferedWriter(write);
-					wr = new PrintWriter(bw);
-					
-					wr.println("---------------------------------------------------\n");
-					wr.write("\n"+nombre);
-					wr.write("\n"+direccion);
-					wr.write("\n"+correoElectronico);
-					wr.write("\n"+cargo);
-					wr.write("\n"+fechaContratacion);
-					wr.write("\n"+cedula);
-					wr.write("\n"+codigo);
-					wr.write("\n-----------------------------------------------------\n");
-					wr.close();
-					bw.close();
-				}
-				catch(IOException e) {
-					System.out.println("Error");
-				}
-			}
-			else {
-				try {
-					archivo.createNewFile();
-					write = new FileWriter(archivo,true);
-					bw =new BufferedWriter(write);
-					wr = new PrintWriter(bw);
-					
-					wr.println("---------------------------------------------------\n");
-					wr.write("\n"+nombre);
-					wr.write("\n"+direccion);
-					wr.write("\n"+correoElectronico);
-					wr.write("\n"+cargo);
-					wr.write("\n"+fechaContratacion);
-					wr.write("\n"+cedula);
-					wr.write("\n"+codigo);
-					wr.write("\n-----------------------------------------------------\n");
-					wr.close();
-					bw.close();
-				}
-				catch(IOException e) {
-					System.out.println("Error");
-				}
-			}
-			
-			return true;
-			
-		}
+	
+	public void guardarDatosEmpleadoEnArchivoTxt() {
+	    String nombreArchivo = "datos-empleado-" + this.getCedula() + ".txt";
+
+	    try {
+	        PrintWriter writer = new PrintWriter(nombreArchivo, "UTF-8");
+	        writer.println("Nombre: " + this.getNombre());
+	        writer.println("Código: " + this.getCodigo());
+	        writer.println("Dirección: " + this.getDireccion());
+	        writer.println("Teléfono: " + this.getTelefono3());
+	        writer.println("Correo electrónico: " + this.getCorreoElectronico());
+	        writer.println("Cargo: " + this.getCargo());
+	        writer.println("Fecha de contratación: " + new SimpleDateFormat("dd/MM/yyyy").format(this.getFechaContratacion()));
+	        writer.println("Cédula: " + this.getCedula());
+	        writer.close();
+	        System.out.println("Los datos del empleado han sido guardados en el archivo " + nombreArchivo);
+	    } catch (FileNotFoundException | UnsupportedEncodingException e) {
+	        System.err.println("Error al guardar los datos del empleado en el archivo " + nombreArchivo + ": " + e.getMessage());
+	    }
+	}
+	
+	public String toString() {
+        return "Empleado=" +"nombre:" + nombre +", cédula:"+ cedula +", direccion:" + direccion +", telefono:"+ telefono3 +", correoElectronico:" + correoElectronico +", cargo:" + cargo +", fecha de contratacion:" + fechaContratacion + ", código:" + codigo;
+    }
 }
