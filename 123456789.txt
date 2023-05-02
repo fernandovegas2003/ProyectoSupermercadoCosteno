@@ -1,0 +1,12 @@
+El total de tu compra es $968.0
+Impuestos aplicados 19%: 183.92000000000002
+Gracias por tu compra. ¡Hasta la próxima!
+------------------------------------
+Factura Supermercado COSTAKING
+Cliente: Juan Perez
+Cédula: 123456789
+Código: 001
+------------------------------------
+Impuestos: 183.92000000000002
+------------------------------------
+Total: 968.0
