@@ -16,6 +16,7 @@ public class Administrador {
 		String correoElectronico="julicostaking@gmail.com";
 		
 	   System.out.println("---------Perfil---------");
+	   System.out.println("Analisis");
            System.out.println("Juliana Chavez King lider y representante del supermercado COSTAKING");
  	   System.out.println("Código: "+ codigo);
  	   System.out.println("Usuario: "+ perfil);
