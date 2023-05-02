@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Carrito {
-	private List<Producto> productos;
+	private List<Producto> productos= new ArrayList<Producto>();
 
     public Carrito() {
-        productos = new ArrayList<Producto>();
     }
 
     public void agregarProducto(Producto producto) {
@@ -15,8 +14,9 @@ public class Carrito {
     }
 
     public void mostrarContenido() {
+    	System.out.println("Contenido del carrito:");
         for (Producto producto : productos) {
-            System.out.println(producto);
+            System.out.println("- " + producto.getNombre() + " x " + producto.getCantidadComprada() + " - Precio unitario: $" + producto.getPrecio());
         }
     }
 
@@ -24,11 +24,9 @@ public class Carrito {
         double total = 0;
         for (Producto producto : productos) {
             total += producto.calcularPrecioTotalProducto();
-        }
-        return total;
+        } return total;
     }
-    
-    
+
     public void vaciarCarrito() {
         productos.clear();
     }
@@ -42,4 +40,8 @@ public class Carrito {
             for (Producto productoInventario : productos) {
                 if (productoCarrito.getNombre().equals(productoInventario.getNombre())) {
                     productoInventario.setCantidadDisponible(productoInventario.getCantidadDisponible() - productoCarrito.getCantidadDisponible());
+                }
+            }
+        }
+    }
 }
