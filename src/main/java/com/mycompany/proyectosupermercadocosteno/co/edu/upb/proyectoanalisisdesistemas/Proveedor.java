@@ -29,9 +29,7 @@ public class Proveedor {
         this.gestionProductos = new GestionProductos();
     }
     
-    public Proveedor(String codigo1, String nombre11, String contraseña2, String direccion12, String telefono2,
-			String correoElectronico2) {
-		// TODO Auto-generated constructor stub
+    public Proveedor(String codigo1, String nombre11, String contraseña2, String direccion12, String telefono2,String correoElectronico2) {
 	}
 
 	public String getCodigo() {
@@ -99,8 +97,7 @@ public class Proveedor {
                 System.out.println("Se ha agregado " + producto.getCantidadDisponible() + " unidades de " + producto.getNombre() + " al inventario.");
                 break;
             }
-        }
-        if (!encontrado) {
+        }if (!encontrado) {
             System.out.println("No se ha encontrado el producto " + producto.getNombre() + ". Por favor, primero agregue el producto antes de aumentar el inventario.");
         }
     }
@@ -108,13 +105,17 @@ public class Proveedor {
     public GestionProductos getGestionProductos() {
         return gestionProductos;
     }
-    public boolean guardarDatosProveedorEnArchivoTxt( String codigo,String cedula,String nombre,String contrasena,String telefono, String correoElectronico) {
+    
+    public String toString() {
+        return "Proveedor=" +"codigo:" + codigo +", nombre:" + nombre1 +", contraseña:"+ contraseña +", direccion:" + direccion1 +", telefono:" + telefono +", correo electronico:" + correoElectronico + ", lista de productos:" + productos;
+    }
+    
+    public boolean  guardarDatosProveedorEnArchivoTxt(String codigo,String nombre1,String contraseña,String direccion1,String telefono,String correoElectronico) {
 		File archivo;
 		FileWriter write;
 		BufferedWriter bw;
 		PrintWriter wr;
-		archivo= new File ("D:\\Documents\\ArchivosTxt\\Proveedores.txt");
-		
+		archivo= new File ("C:\\Users\\julic\\eclipse-workspace\\ProyectoAnalisisdeSistemas\\PROVEEDORES.txt");
 		
 		if( !archivo.exists()) {
 			try {
@@ -125,20 +126,18 @@ public class Proveedor {
 				
 				wr.println("---------------------------------------------------\n");
 				wr.write("\n"+codigo);
-				wr.write("\n"+cedula);
-				wr.write("\n"+nombre);
-				wr.write("\n"+contrasena);
+				wr.write("\n"+nombre1);
+				wr.write("\n"+contraseña);
+				wr.write("\n"+direccion1);
 				wr.write("\n"+telefono);
 				wr.write("\n"+correoElectronico);
 				wr.write("\n-----------------------------------------------------\n");
 				wr.close();
 				bw.close();
-			}
-			catch(IOException e) {
+			}catch(IOException e) {
 				System.out.println("Error");
 			}
-		}
-		else {
+		}else {
 			try {
 				archivo.createNewFile();
 				write = new FileWriter(archivo,true);
@@ -147,21 +146,41 @@ public class Proveedor {
 				
 				wr.println("---------------------------------------------------\n");
 				wr.write("\n"+codigo);
-				wr.write("\n"+cedula);
-				wr.write("\n"+nombre);
-				wr.write("\n"+contrasena);
+				wr.write("\n"+nombre1);
+				wr.write("\n"+contraseña);
+				wr.write("\n"+direccion1);
 				wr.write("\n"+telefono);
 				wr.write("\n"+correoElectronico);
 				wr.write("\n-----------------------------------------------------\n");
 				wr.close();
 				bw.close();
-			}
-			catch(IOException e) {
+			}catch(IOException e) {
 				System.out.println("Error");
 			}
-		}
-		
-		return true;
-		
+		}return true;
 	}
+    
+    public void agregarProductoProveedor(Scanner scanner, GestionProveedores gestionProveedores) {
+        System.out.println("Ingrese el código del proveedor:");
+        String codigo1 = scanner.next();
+        Proveedor proveedor11 = gestionProveedores.buscarProveedor(codigo1, nombre1);
+        if (proveedor11 != null) {
+            System.out.println("Ingrese el nombre del nuevo producto:");
+            scanner.nextLine();
+            String nombre = scanner.nextLine();
+            System.out.println("Ingrese la descripción del nuevo producto:");
+            String descripcion= scanner.nextLine();
+            System.out.println("Ingrese el precio del nuevo producto:");
+            double precio= scanner.nextDouble();
+            System.out.println("Ingrese la cantidad de inventario del nuevo producto:");
+            int cantidadDisponible= scanner.nextInt();
+            scanner.nextLine(); // Limpiar el buffer del scanner
+
+            Producto nuevoProducto = new Producto(nombre, descripcion, precio, cantidadDisponible);
+            proveedor11.getGestionProductos().agregarProducto(nuevoProducto);
+            System.out.println("Producto agregado con éxito.");
+        } else {
+            System.out.println("No se encontró un proveedor con ese código.");
+        }
+    }
 }
